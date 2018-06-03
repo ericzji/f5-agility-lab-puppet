@@ -8,7 +8,7 @@
 classname = "Getting Started with F5 Puppet"
 
 # OPTIONAL: The URL to the GitHub Repository for this class
-github_repo = "https://github.com/f5devcentral/your-class-repo"
+github_repo = "https://github.com/ericzji/f5-agility-lab-puppet"
 
 # OPTIONAL: Google Analytics
 # googleanalytics_id = 'UA-85156643-4'
