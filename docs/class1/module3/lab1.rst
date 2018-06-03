@@ -1,49 +1,19 @@
-Lab – Download the |bip| |ve| Image
------------------------------------
+Lab – Create simple VIP, and verify HTTP traffic
+------------------------------------
 
 .. TODO:: Needs lab description
 
-This lab will teach you how to download the |bip| |ve| image to your system.
+In this lab we will unpack and install the |bip| Appliance into a rack in your
+datacenter.
 
-Task – Open a Web Browser
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Task – Create simple VIP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO:: Needs task description
 
-In this task you will open a web browser and navigate to the |f5| Downloads
-site.
 
-.. NOTE:: An account is required to download software.  You can create one at
-   https://login.f5.com/resource/registerEmail.jsp
+Task – Verify HTTP traffic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Follow these steps to complete this task:
 
-#. Open your web browser
-#. Navigate to https://downloads.f5.com
-#. Login with your username and password.
-#. After logging in you should see the following window:
-
-   |image1|
-
-Task – Download the Image
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. TODO:: Needs task description
-
-In this task we will download the |f5| |bip| |ve| image to your system
-
-Follow these steps to complete this task:
-
-#. Click the 'Find a Download' button.
-
-   .. image:: /_static/image002.png
-
-#. Click the link that contains the |bip| TMOS software version you would like
-   to download.
-
-   .. IMPORTANT:: Be sure to click a link that has "\ |ve|" in the name
-
-#. Find the image appropriate for your hypervisor
-#. Download the image and save it to you local system
-
-.. |image1| image:: /_static/image001.png
+Task – Delete configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

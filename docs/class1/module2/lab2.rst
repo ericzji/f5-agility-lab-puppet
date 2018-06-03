@@ -1,4 +1,4 @@
-Lab – Power-on the |bip| Appliance
+Lab – BIG-IP on-boarding
 ----------------------------------
 
 .. TODO:: Needs lab description

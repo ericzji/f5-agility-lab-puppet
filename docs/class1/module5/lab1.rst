@@ -1,4 +1,4 @@
-Lab – Download the |bip| |ve| Image
+Lab – Puppet Workflow automation
 -----------------------------------
 
 .. TODO:: Needs lab description

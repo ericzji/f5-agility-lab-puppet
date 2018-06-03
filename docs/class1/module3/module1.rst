@@ -1,4 +1,4 @@
-Module – Installing a BIG-IP Virtual Edition
+Module – Application Deployment with iApp
 =============================================
 
 .. TODO:: Needs module description

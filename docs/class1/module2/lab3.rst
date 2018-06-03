@@ -1,4 +1,4 @@
-Lab – Create simple VIP, and verify HTTP traffic
+Lab – BIG-IP HA clustering
 ------------------------------------
 
 .. TODO:: Needs lab description
