@@ -1,4 +1,4 @@
-Module – Installing a BIG-IP Virtual Edition
+Module – Puppet Workflow automation
 =============================================
 
 .. TODO:: Needs module description

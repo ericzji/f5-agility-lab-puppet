@@ -1,4 +1,4 @@
-Module – Installing a BIG-IP Virtual Edition
+Module – Installing a BIG-IP F5 Module
 =============================================
 
 .. TODO:: Needs module description
@@ -10,4 +10,3 @@ environment.
    :maxdepth: 1
    :glob:
 
-   lab*

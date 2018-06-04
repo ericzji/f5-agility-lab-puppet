@@ -1,4 +1,4 @@
-Module – Installing a BIG-IP Appliance
+Module – Model-driven automation with Puppet
 ======================================
 
 .. TODO:: Needs module description
