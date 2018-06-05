@@ -10,6 +10,11 @@ environment.
    :maxdepth: 1
    :glob:
 
+#. One
+#. Two
+#. Three
+#. Four
+
 #. Download F5 module
 .. code::
    scs@master:/etc/puppetlabs/code/modules/f5_rest$ ls
