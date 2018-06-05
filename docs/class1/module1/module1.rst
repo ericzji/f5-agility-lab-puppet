@@ -10,3 +10,8 @@ environment.
    :maxdepth: 1
    :glob:
 
+
+.. code::
+[bigip1]
+type f5
+url https://admin:admin@10.192.74.111

@@ -1,11 +1,6 @@
 Getting Started
 ---------------
 
-.. TODO:: Complete getting started instructions
-
-Please follow the instructions provided by the instructor to start your
-lab and access your jump host.
-
 .. NOTE::
 	 All work for this lab will be performed exclusively from the Windows
 	 jumphost. No installation or interaction with your local system is
@@ -18,10 +13,10 @@ Lab Topology
 
 The following components have been included in your lab environment:
 
-- 2 x F5 BIG-IP VE (v12.1)
-- 1 x F5 iWorkflow VE (v2.1)
+- 2 x F5 BIG-IP VE (v13.1.0.3)
 - 1 x Linux LAMP Webserver (xubuntu 14.04)
 - 1 x Windows Jumphost
+- 1 x Puppet Master (ubuntu 14.04)
 
 Lab Components
 ^^^^^^^^^^^^^^
