@@ -9,8 +9,6 @@ Getting Started
 Lab Topology
 ~~~~~~~~~~~~
 
-.. TODO:: Complete lab topology
-
 The following components have been included in your lab environment:
 
 - 2 x F5 BIG-IP VE (v13.1.0.3)

@@ -1,4 +1,4 @@
-Lab – Create simple VIP, and verify HTTP traffic
+Lab – Application Deployment with iApp
 ------------------------------------
 
 .. TODO:: Needs lab description

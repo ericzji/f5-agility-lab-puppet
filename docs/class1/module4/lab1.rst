@@ -1,4 +1,4 @@
-Lab – Download the |bip| |ve| Image
+Lab – Puppet automation with f5_command
 -----------------------------------
 
 .. TODO:: Needs lab description

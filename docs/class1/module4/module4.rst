@@ -1,4 +1,4 @@
-Module – Installing a BIG-IP Virtual Edition
+Module – Puppet automation with f5_command
 =============================================
 
 .. TODO:: Needs module description
