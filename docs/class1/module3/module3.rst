@@ -1,10 +1,7 @@
-Module – Application Deployment with iApp
+Module 3 – Application Deployment with iApp
 =============================================
 
-.. TODO:: Needs module description
-
-In this module you will learn how to install a |f5| |bip| |ve| into your
-environment.
+F5 iApps templates encapsulate all the necessary configuration of objects required by an application deployment to ensure consistent policies of the application.
 
 .. toctree::
    :maxdepth: 1

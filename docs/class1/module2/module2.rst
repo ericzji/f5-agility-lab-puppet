@@ -1,10 +1,9 @@
-Module – Model-driven automation with Puppet
+Module 2 – Model-driven automation with Puppet
 ======================================
 
 .. TODO:: Needs module description
 
-In this module you will learn how to install a |f5| |bip| Appliance into your
-datacenter.
+In this module you will learn how to deploy HTTP application, on-boarding a new BIG-IP device etc.
 
 .. toctree::
    :maxdepth: 1

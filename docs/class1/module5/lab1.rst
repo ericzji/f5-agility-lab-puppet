@@ -5,45 +5,124 @@ Lab – Puppet Workflow automation
 
 This lab will teach you how to download the |bip| |ve| image to your system.
 
-Task – Open a Web Browser
-~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO:: Needs task description
+Task – Create your own module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this task you will open a web browser and navigate to the |f5| Downloads
-site.
 
-.. NOTE:: An account is required to download software.  You can create one at
-   https://login.f5.com/resource/registerEmail.jsp
+.. Code::
 
-Follow these steps to complete this task:
+	$ sudo puppet module list
+	/etc/puppetlabs/code/environments/production/modules
+	├── eric-workflow (v0.1.0)
+	├── puppetlabs-apache (v1.6.0)
+	├── puppetlabs-ciscopuppet (v1.0.0)
+	├── puppetlabs-concat (v1.2.4)
+	└── puppetlabs-stdlib (v4.8.0)
+	/etc/puppetlabs/code/modules
+	├── puppetlabs-f5 (v1.5.1)
+	└── puppetlabs-f5 (v1.3.0)
 
-#. Open your web browser
-#. Navigate to https://downloads.f5.com
-#. Login with your username and password.
-#. After logging in you should see the following window:
+	scs@master:/etc/puppetlabs/code/environments/production/modules$ sudo puppet module generate scs-bigip --skip-interview
 
-   |image1|
+	Notice: Generating module at /etc/puppetlabs/code/environments/production/modules/bigip...
+	Notice: Populating templates...
+	Finished; module generated in bigip.
+	bigip/metadata.json
+	bigip/Rakefile
+	bigip/README.md
+	bigip/tests
+	bigip/tests/init.pp
+	bigip/manifests
+	bigip/manifests/init.pp
+	bigip/Gemfile
+	bigip/spec
+	bigip/spec/classes
+	bigip/spec/classes/init_spec.rb
+	bigip/spec/spec_helper.rb
 
-Task – Download the Image
-~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO:: Needs task description
+	scs@master:/etc/puppetlabs/code/environments/production/modules$ cd bigip/
+	scs@master:/etc/puppetlabs/code/environments/production/modules/bigip$ ls
+	Gemfile  manifests  metadata.json  Rakefile  README.md  spec  tests
 
-In this task we will download the |f5| |bip| |ve| image to your system
 
-Follow these steps to complete this task:
 
-#. Click the 'Find a Download' button.
+Task – Create new resource (wrapper)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   .. image:: /_static/image002.png
+.. Code::
 
-#. Click the link that contains the |bip| TMOS software version you would like
-   to download.
+	scs@master:/etc/puppetlabs/code/environments/production/modules/bigip$ cd manifests/
+	scs@master:/etc/puppetlabs/code/environments/production/modules/bigip/manifests$ vi bigip_vip.pp
 
-   .. IMPORTANT:: Be sure to click a link that has "\ |ve|" in the name
+.. Code::
 
-#. Find the image appropriate for your hypervisor
-#. Download the image and save it to you local system
+	define bigip::bigip_vip (
+	$nodeip,
+	$virtualip,
+	){
 
-.. |image1| image:: /_static/image001.png
+	f5_node { "/Common/web_server_1":
+	   ensure                          => 'present',
+	   address                         => "$nodeip",
+	   description                     => 'Web Server Node',
+	   availability_requirement        => 'all',
+	   health_monitors                 => ['/Common/icmp'],
+	}
+
+	f5_pool { "/Common/pool1":
+	   ensure                          => 'present',
+	   members                         => [
+	        { name => '/Common/web_server_1', port => '80', },
+	   ],
+	   availability_requirement        => 'all',
+	   health_monitors                 => ['/Common/http_head_f5'],
+	}
+
+	f5_virtualserver { "/Common/vs1":
+	   ensure                          => 'present',
+	   provider                        => 'standard',
+	   default_pool                    => '/Common/pool1',
+	   destination_address             => $virtualip,
+	   destination_mask                => '255.255.255.255',
+	   http_profile                    => '/Common/http',
+	   service_port                    => '80',
+	   protocol                        => 'tcp',
+	   source                          => '0.0.0.0/0',
+	   source_address_translation      => 'automap'
+	}
+
+	}	
+
+
+
+Task – Puppet run to use new resource
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+site.pp
+
+.. Code::
+
+	node bigip1 {
+
+	bigip::bigip_vip { "vs" :
+	  nodeip   => '100.1.1.1',
+	  virtualip => '1.1.1.1',
+	}
+
+	}
+
+.. Code::
+
+	$ sudo puppet device -v --user=root --trace
+	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: Retrieving pluginfacts
+	Info: Retrieving plugin
+	Info: Caching catalog for bigip1
+	Info: Applying configuration version '1530656207'
+	Notice: /Stage[main]/Main/Node[bigip1]/Bigip::Bigip_vip[vs]/F5_node[/Common/web_server_1]/ensure: created
+	Notice: /Stage[main]/Main/Node[bigip1]/Bigip::Bigip_vip[vs]/F5_pool[/Common/pool1]/ensure: created
+	Notice: /Stage[main]/Main/Node[bigip1]/Bigip::Bigip_vip[vs]/F5_virtualserver[/Common/vs1]/ensure: created
+
+

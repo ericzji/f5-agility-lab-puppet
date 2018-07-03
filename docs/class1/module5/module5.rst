@@ -1,4 +1,4 @@
-Module – Puppet Workflow automation
+Module 5 – Puppet Workflow automation
 =============================================
 
 .. TODO:: Needs module description

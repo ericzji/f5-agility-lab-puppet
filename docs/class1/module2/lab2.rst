@@ -1,33 +1,59 @@
 Lab – BIG-IP on-boarding
 ----------------------------------
 
-.. TODO:: Needs lab description
+When it comes to deployment of multiple physical or virtual BIG-IP devices, organizations can use Puppet F5 modules to automate all the initial BIG-IP onboarding tasks such as device licensing, DNS and NTP settings, internal and external VLANs, self-IPs, and route domains. 
 
-In this lab we will connect the power cord and turn on the |bip| Appliance.
+.. Code:: 
 
-Task – Connect the Power Cord
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	node bigip1 {
 
-.. TODO:: Needs task description
+	f5_license { '/Common/license':
+	  registration_key => "DRRNQ-CRBHG-EHFOF-RRRGJ-MIBDUWE"
+	}
 
-In this task you will connect the appropriate power cord.
+	f5_root { '/Common/root':
+	  old_password => 'default',
+	  new_password => 'default',
+	}
 
-.. IMPORTANT:: Be sure to use the appropriate power cord for your region.
-   Follow all applicable electrical guidelines and codes.
+	f5_user { 'admin':
+	  ensure   => 'present',
+	  password => 'admin',
+	}
 
-Follow these steps to complete this task:
+	f5_globalsetting { '/Common/globalsetting':
+	  hostname  => "bigip-a.f5.local",
+	  gui_setup => "disabled",
+	}
 
-#. Connect one end to the |bip|
-#. Connect the other end to the power source
+	f5_dns { '/Common/dns':
+	  name_servers => ["4.2.2.2", "8.8.8.8"],
+	  search       => ["localhost","f5.local"],
+	}
 
-Task – Turn on the |bip| Appliance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	f5_ntp { '/Common/ntp':
+	  servers  => ['0.pool.ntp.org', '1.pool.ntp.org'],
+	  timezone => 'UTC',
+	}
 
-.. TODO:: Needs task description
+	}
+	
 
-In this task you turn on the |bip| Appliance.
+.. Code::
 
-Follow these steps to complete this task:
+	$ sudo puppet device -v --user=root --trace
+	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: Retrieving pluginfacts
+	Info: Retrieving plugin
+	Info: Caching catalog for bigip1
+	Info: Applying configuration version '1530319476'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_license[/Common/license]/ensure: created
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_root[/Common/root]/old_password: defined 'old_password' as 'default'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_root[/Common/root]/new_password: defined 'new_password' as 'default'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_user[admin]/password: defined 'password' as 'admin'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_dns[/Common/dns]/name_servers: defined 'name_servers' as '4.2.2.2 8.8.8.8'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_dns[/Common/dns]/search: defined 'search' as 'localhost f5.local'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_ntp[/Common/ntp]/servers: defined 'servers' as '0.pool.ntp.org 1.pool.ntp.org'
+	Info: Node[bigip1]: Unscheduling all events on Node[bigip1]
+	Notice: Applied catalog in 14.86 seconds
 
-#. Push the 'On' button
-#. Verify the red F5 ball lights up

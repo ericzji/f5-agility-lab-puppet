@@ -1,49 +1,35 @@
 Lab – Puppet automation with f5_command
 -----------------------------------
 
-.. TODO:: Needs lab description
+Following is a sample Puppet manifest file (site.pp) to run a TMSH command:  
 
-This lab will teach you how to download the |bip| |ve| image to your system.
+.. Code::
 
-Task – Open a Web Browser
-~~~~~~~~~~~~~~~~~~~~~~~~~
+	node bigip1 {
 
-.. TODO:: Needs task description
+	f5_command { '/Common/tmsh':
+	  tmsh  => "tmsh create ltm node 2.2.2.2",
+	}
 
-In this task you will open a web browser and navigate to the |f5| Downloads
-site.
+	}
 
-.. NOTE:: An account is required to download software.  You can create one at
-   https://login.f5.com/resource/registerEmail.jsp
+Running the puppet device -v --user=root command will have the TMSH command apply to the F5 device.
 
-Follow these steps to complete this task:
 
-#. Open your web browser
-#. Navigate to https://downloads.f5.com
-#. Login with your username and password.
-#. After logging in you should see the following window:
+.. Code::
 
-   |image1|
+	$ sudo puppet device -v --user=root --trace
+	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: Retrieving pluginfacts
+	Info: Retrieving plugin
+	Info: Caching catalog for bigip1
+	Info: Applying configuration version '1530316553'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_command[/Common/tmsh]/ensure: created
+	Info: Node[bigip1]: Unscheduling all events on Node[bigip1]
+	Notice: Applied catalog in 0.56 seconds
 
-Task – Download the Image
-~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO:: Needs task description
+Go to BIG-IP GUI to verify that the server node has been successfully created.
 
-In this task we will download the |f5| |bip| |ve| image to your system
+.. image:: ../../_static/module4_lab1_picture1.png
 
-Follow these steps to complete this task:
-
-#. Click the 'Find a Download' button.
-
-   .. image:: /_static/image002.png
-
-#. Click the link that contains the |bip| TMOS software version you would like
-   to download.
-
-   .. IMPORTANT:: Be sure to click a link that has "\ |ve|" in the name
-
-#. Find the image appropriate for your hypervisor
-#. Download the image and save it to you local system
-
-.. |image1| image:: /_static/image001.png
