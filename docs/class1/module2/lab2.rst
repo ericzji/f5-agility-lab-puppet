@@ -3,6 +3,8 @@ Lab – BIG-IP on-boarding
 
 When it comes to deployment of multiple physical or virtual BIG-IP devices, organizations can use Puppet F5 modules to automate all the initial BIG-IP onboarding tasks such as device licensing, DNS and NTP settings, internal and external VLANs, self-IPs, and route domains. 
 
+Following is a sample Puppet manifest file (site.pp)
+
 .. Code:: 
 
 	node bigip1 {
@@ -37,12 +39,14 @@ When it comes to deployment of multiple physical or virtual BIG-IP devices, orga
 	}
 
 	}
-	
+
+
+Running the puppet will automatically onboard the new device.
 
 .. Code::
 
 	$ sudo puppet device -v --user=root --trace
-	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 	Info: Retrieving pluginfacts
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1

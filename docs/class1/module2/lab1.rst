@@ -1,4 +1,4 @@
-Lab – Create simple VIP, and verify HTTP traffic
+Lab – Create simple VIP, and verify HTTP 
 ------------------------------------
 
 Task – Create simple VIP
@@ -74,7 +74,7 @@ Before running puppet device (command for Puppet Network Device ), there are no 
 .. Code::
 
 	$ sudo puppet device -v --user=root --trace
-	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 	Info: Retrieving pluginfacts
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1
@@ -87,7 +87,7 @@ Before running puppet device (command for Puppet Network Device ), there are no 
 	Info: Node[bigip1]: Unscheduling all events on Node[bigip1]
 	Notice: Applied catalog in 1.38 seconds
 
-Task – Verify HTTP traffic
+Task – Verify configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Puppet has now created a new, fully configured virtual server (Figure 3). This server is load balancing HTTP applications across a newly created pool (Figure 4). The pool includes three newly created web servers (Figure 5).
 
@@ -131,7 +131,7 @@ Task – Delete configuration
 .. Code::
 
 	$ sudo puppet device -v --user=root --trace
-	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 	Info: Retrieving pluginfacts
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1

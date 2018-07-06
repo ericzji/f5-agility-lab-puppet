@@ -1,7 +1,7 @@
 Module 4 – Puppet automation with f5_command
 =============================================
 
-Sends an arbitrary command to an BIG-IP node. TMSH command has no ensure => absent functionality. It provides a way to execute native tmsh or bash commands ( using the REST API (/mgmt/tm/util/bash)
+F5_command module allows you to send an arbitrary command to an BIG-IP node. It provides a way to execute native tmsh or bash commands, or a workaround for those BIG-IP resources we still yet to develop the provider(s)
 
 .. toctree::
    :maxdepth: 1

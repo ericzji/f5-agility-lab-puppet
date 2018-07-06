@@ -1,16 +1,13 @@
 Class - |classname|
 ===================
 
-.. TODO:: Need class description
-
 This class covers the following topics:
 
-- Downloading a |f5| |bip| |ve|
-- Installing a |bip| |ve| image on a hypervisor
-- Installing a |f5| |bip| Appliance
-- Powering on a |bip| Appliance
+- Configure and run Puppet BIG-IP module
+- Deploy BIG-IP application with Puppet
+- Workflow automation
 
-Expected time to complete: **3 hours**
+Expected time to complete: **1 hours**
 
 .. toctree::
    :maxdepth: 1

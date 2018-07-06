@@ -19,7 +19,7 @@ Running the puppet device -v --user=root command will have the TMSH command appl
 .. Code::
 
 	$ sudo puppet device -v --user=root --trace
-	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 	Info: Retrieving pluginfacts
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1

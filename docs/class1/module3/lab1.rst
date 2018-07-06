@@ -53,6 +53,8 @@ Task – Use FACTER_url command to GET manifest
 Task – Modify manifest 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+You can copy above to site.pp, and make modification accordingly. In this example, we will add another Microsoft Lync iApp
+
 .. Code::
 
 	node bigip1 {

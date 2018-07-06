@@ -2,16 +2,19 @@ Module 1 – Configuring and Running Puppet BIG-IP Module
 =============================================
 
 
-In this module you will learn how to install a |f5| |bip| |ve| into your
-environment.
-
 .. toctree::
    :maxdepth: 1
    :glob:
 
-To start the deployment, install the Puppet master and create a proxy system able to run the Puppet agent. In addition, you must install all the dependencies, including iControl gem and Faraday gem into the Puppet Ruby environment on the proxy host (Puppet agent). In this lab, the puppet master has already been provisioned.
+To start the deployment, install the Puppet master and create a proxy system able to run the Puppet agent. In addition, you must install all the dependencies, including iControl gem and Faraday gem into the Puppet Ruby environment on the proxy host (Puppet agent). 
+
+In this lab, the puppet master and proxy have already been installed and provisioned.
+
+Login to Puppet Master from Jumphost (PuTTy session "Puppet Master")
 
 #.  **Download F5 module**
+
+Download the F5 module from https://github.com/f5devcentral/f5-puppet. In this lab, F5 module has already been downloaded.
 
 	.. code::
 
@@ -25,13 +28,17 @@ To start the deployment, install the Puppet master and create a proxy system abl
 
 	   [bigip1]
 	   type f5
-	   url https://admin:admin@10.192.74.111
+	   url https://admin:admin@10.1.1.246
 
-	In the above example, admin:admin@10.192.74.111 refers to Puppet's login for the F5 device: <USERNAME>:<PASSWORD>@<IP ADDRESS OF BIGIP>.
+	In the above example, admin:admin@10.1.1.246 refers to Puppet's login for the F5 device: <USERNAME>:<PASSWORD>@<IP ADDRESS OF BIGIP>.
 
 #. **Classify Your Nodes on the Puppet Master**
 
-	Next, you enter the configuration in the relevant class statement or node declaration in your site.pp, <devicecertname>.pp node manifest, or some profiles::<profile_name> manifest file. Following is a sample Puppet manifest file (site.pp) for configuring an HTTP application on the BIG-IP platform:  
+	Next, you enter the configuration in the relevant class statement or node declaration in your site.pp, <devicecertname>.pp node manifest, or some profiles::<profile_name> manifest file. Following is a sample Puppet manifest file (site.pp) for configuring an HTTP application on the BIG-IP platform::
+
+		scs@master:/etc/puppetlabs/code/environments/production/manifests$ pwd
+		/etc/puppetlabs/code/environments/production/manifests
+
 	.. Code::
 
 		node bigip1 {
@@ -55,14 +62,14 @@ To start the deployment, install the Puppet master and create a proxy system abl
 
 #. **Run puppet device**
 
-	Running the puppet device -v --user=root command will have the device proxy node generate a certificate and apply your classifications to the F5 device.
+	Running the *puppet device -v --user=root* command will have the device proxy node generate a certificate and apply your classifications to the F5 device.
 
 	As shown below, all the tasks were completed successfully with no failures. 
 
 	.. Code::
 
 		$ sudo puppet device -v --user=root --trace
-		Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+		Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 		Info: Retrieving pluginfacts
 		Info: Retrieving plugin
 		Info: Caching catalog for bigip1
@@ -81,7 +88,7 @@ To start the deployment, install the Puppet master and create a proxy system abl
 
 	.. Code::
 
-		$ sudo FACTER_url=https://admin:admin@10.192.74.111 puppet resource f5_vlan
+		$ sudo FACTER_url=https://admin:admin@10.1.1.246 puppet resource f5_vlan
 		f5_vlan { '/Common/test_vlan':
 		  ensure                 => 'present',
 		  auto_last_hop          => 'enabled',
@@ -105,7 +112,7 @@ To start the deployment, install the Puppet master and create a proxy system abl
 	.. Code::
 
 		$ sudo puppet device -v --user=root --trace
-		Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+		Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 		Info: Retrieving pluginfacts
 		Info: Retrieving plugin
 		Info: Caching catalog for bigip1

@@ -3,12 +3,11 @@ Lab – Puppet Workflow automation
 
 .. TODO:: Needs lab description
 
-This lab will teach you how to download the |bip| |ve| image to your system.
-
 
 Task – Create your own module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+In this lab, we are creating a new puppet module *bigip*
 
 .. Code::
 
@@ -50,6 +49,8 @@ Task – Create your own module
 
 Task – Create new resource (wrapper)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Next, we create a new wrapper resource *bigip_vip*, which is to tie multiple resources together: f5_node, f5_pool, f5_virtualserver. It provides a new puppet resource for VIP service while abstracting all the underlying BIG-IP objects.
 
 .. Code::
 
@@ -100,7 +101,7 @@ Task – Create new resource (wrapper)
 Task – Puppet run to use new resource
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-site.pp
+You can use the new wrapper resource *bigip_vip* in site.pp, in the same manner you are using other BIG-IP resources.
 
 .. Code::
 
@@ -116,7 +117,7 @@ site.pp
 .. Code::
 
 	$ sudo puppet device -v --user=root --trace
-	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 	Info: Retrieving pluginfacts
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1

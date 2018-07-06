@@ -1,8 +1,6 @@
 Module 2 – Model-driven automation with Puppet
 ======================================
 
-.. TODO:: Needs module description
-
 In this module you will learn how to deploy HTTP application, on-boarding a new BIG-IP device etc.
 
 .. toctree::
