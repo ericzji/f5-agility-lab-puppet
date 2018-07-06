@@ -50,7 +50,10 @@ In this lab, we are creating a new puppet module *bigip*
 Task – Create new resource (wrapper)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next, we create a new wrapper resource *bigip_vip*, which is to tie multiple resources together: f5_node, f5_pool, f5_virtualserver. It provides a new puppet resource for VIP service while abstracting all the underlying BIG-IP objects.
+Defined resource types (also called defined types or defines) are blocks of Puppet code that can be evaluated multiple times with different parameters. Once defined, they act like a new resource type: you can cause the block to be evaluated by declaring a resource of that new resource type.
+
+
+By using Defined resource types, we can create a new wrapper resource *bigip_vip*, which is to tie multiple resources together: f5_node, f5_pool, f5_virtualserver. It provides a new puppet resource for VIP service while abstracting all the underlying BIG-IP objects.
 
 .. Code::
 
