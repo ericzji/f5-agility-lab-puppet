@@ -62,6 +62,8 @@ Following is a sample Puppet manifest file (site.pp) for configuring an HTTP app
 	   require                         => F5_pool['/Common/web_pool'],
 	}
 
+	}
+
 
 This example features three tasks: 
 

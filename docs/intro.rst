@@ -8,6 +8,9 @@ lab and access your jump host.
   jumphost. No installation or interaction with your local system is
   required.
 
+Use Blueprint *"Puppet lab for Agility2018-bp"*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Lab Topology
 ~~~~~~~~~~~~
 

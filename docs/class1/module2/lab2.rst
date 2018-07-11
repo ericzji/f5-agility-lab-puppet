@@ -9,10 +9,6 @@ Following is a sample Puppet manifest file (site.pp)
 
 	node bigip1 {
 
-	f5_license { '/Common/license':
-	  registration_key => "DRRNQ-CRBHG-EHFOF-RRRGJ-MIBDUWE"
-	}
-
 	f5_root { '/Common/root':
 	  old_password => 'default',
 	  new_password => 'default',
@@ -51,7 +47,6 @@ Running the puppet will automatically onboard the new device.
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1
 	Info: Applying configuration version '1530319476'
-	Notice: /Stage[main]/Main/Node[bigip1]/F5_license[/Common/license]/ensure: created
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_root[/Common/root]/old_password: defined 'old_password' as 'default'
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_root[/Common/root]/new_password: defined 'new_password' as 'default'
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_user[admin]/password: defined 'password' as 'admin'

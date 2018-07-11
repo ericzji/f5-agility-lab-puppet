@@ -10,11 +10,11 @@ To start the deployment, install the Puppet master and create a proxy system abl
 
 In this lab, the puppet master and proxy have already been installed and provisioned.
 
-Login to Puppet Master from Jumphost (PuTTy session "Puppet Master")
+ssh to Puppet Master from Jumphost Terminal
 
 #.  **Download F5 module**
 
-Download the F5 module from https://github.com/f5devcentral/f5-puppet. In this lab, F5 module has already been downloaded.
+	Download the F5 module from https://github.com/f5devcentral/f5-puppet. In this lab, F5 module has already been downloaded.
 
 	.. code::
 
@@ -23,7 +23,7 @@ Download the F5 module from https://github.com/f5devcentral/f5-puppet. In this l
 
 #. **Create a device.conf File**
 
-	Before you can use the F5 module, you must create a device.conf file in the Puppet configuration directory (either /etc/puppet or /etc/puppetlabs/puppet) on the Puppet proxy:
+	Before you can use the F5 module, you must create a device.conf file in the Puppet configuration directory (/etc/puppetlabs/puppet) on the Puppet proxy:
 	.. code::
 
 	   [bigip1]
