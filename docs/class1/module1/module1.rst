@@ -1,7 +1,6 @@
 Module 1 – Configuring and Running Puppet BIG-IP Module 
 =============================================
 
-
 .. toctree::
    :maxdepth: 1
    :glob:
