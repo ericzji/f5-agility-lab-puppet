@@ -13,7 +13,9 @@ ssh to Puppet Master from Jumphost Terminal
 
 #.  **Download F5 module**
 
-	Download the F5 module from https://github.com/f5devcentral/f5-puppet. In this lab, F5 module has already been downloaded.
+	.. NOTE:: In this lab, F5 module has already been downloaded with the latest version. You may only perform this step to get the updated version.
+
+	Download the F5 module from https://github.com/f5devcentral/f5-puppet. 
 
 	.. code::
 
@@ -21,6 +23,8 @@ ssh to Puppet Master from Jumphost Terminal
 	   CHANGELOG.md  examples  Gemfile  lib  LICENSE  manifests  metadata.json  NOTICE  pkg  Rakefile  README.md  spec
 
 #. **Create a device.conf File**
+
+	.. NOTE:: In this lab, you may find the configuration file is already created, and you just have to verify the configuration.
 
 	Before you can use the F5 module, you must create a device.conf file in the Puppet configuration directory (/etc/puppetlabs/puppet) on the Puppet proxy:
 	.. code::
