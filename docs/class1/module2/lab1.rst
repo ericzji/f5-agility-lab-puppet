@@ -177,6 +177,22 @@ Task – Delete configuration
 	   ensure                          => 'absent',
 	}
 
+	f5_selfip { '/Common/internal_self_ip':
+        ensure                 => 'absent',
+	}
+
+	f5_selfip { '/Common/external_self_ip':
+        ensure                 => 'absent',
+	}
+
+	f5_vlan { '/Common/internal_vlan':
+        ensure                 => 'absent',
+	}
+
+	f5_vlan { '/Common/external_vlan':
+        ensure                 => 'absent',
+	}
+
 	}
 
 .. Code::
