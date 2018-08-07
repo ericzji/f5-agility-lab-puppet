@@ -10,19 +10,19 @@ Following is a sample Puppet manifest file (site.pp) for configuring an HTTP app
 	node bigip1 {
 
 	f5_vlan { '/Common/internal_vlan':
-      ensure                         => 'present',
-      auto_last_hop          => 'enabled',
-      cmp_hash               => 'src-ip',
-      description            => 'This is VLAN 10',
-      fail_safe              => 'enabled',
-      fail_safe_action       => 'restart-all',
-      fail_safe_timeout      => '90',
-      mtu                    => '1500',
-      sflow_polling_interval => '3000',
-      sflow_sampling_rate    => '4000',
-      source_check           => 'enabled',
-      vlan_tag               => "$int_vlan",
-      interfaces             => [{name => '1.2', tagged => false}]
+        ensure                         => 'present',
+        auto_last_hop          => 'enabled',
+        cmp_hash               => 'src-ip',
+        description            => 'This is VLAN 10',
+        fail_safe              => 'enabled',
+        fail_safe_action       => 'restart-all',
+        fail_safe_timeout      => '90',
+        mtu                    => '1500',
+        sflow_polling_interval => '3000',
+        sflow_sampling_rate    => '4000',
+        source_check           => 'enabled',
+        vlan_tag               => "100",
+        interfaces             => [{name => '1.2', tagged => false}]
 	}
 
 	f5_vlan { '/Common/external_vlan':
@@ -37,7 +37,7 @@ Following is a sample Puppet manifest file (site.pp) for configuring an HTTP app
 		sflow_polling_interval => '3000',
 		sflow_sampling_rate    => '4000',
 		source_check           => 'enabled',
-		vlan_tag               => "$ext_vlan",
+		vlan_tag               => "101",
 		interfaces             => [{name => '1.1', tagged => false}]
 	}
 
