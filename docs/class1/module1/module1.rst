@@ -125,7 +125,7 @@ ssh to Puppet Master from Jumphost Terminal
 
 #. **Remove the configuration**
 
-	Next, modify in your site.pp to the following:
+	Next, modify your site.pp to the following:
 
 	.. Code::
 
@@ -135,8 +135,9 @@ ssh to Puppet Master from Jumphost Terminal
 
 		 }
 		}
-Re-run puppet device:
+	Re-run puppet device:
 
 	.. Code::
 
 			$ sudo puppet device -v --user=root --trace
+			
