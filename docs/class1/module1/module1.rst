@@ -123,3 +123,20 @@ ssh to Puppet Master from Jumphost Terminal
 		Notice: Applied catalog in 0.18 seconds
 
 
+#. **Remove the configuration**
+
+	Next, modify in your site.pp to the following:
+
+	.. Code::
+
+		node bigip1 {
+		f5_vlan { '/Common/test_vlan':
+		      ensure                 => 'absent',
+
+		 }
+		}
+Re-run puppet device:
+
+	.. Code::
+
+			$ sudo puppet device -v --user=root --trace
