@@ -8,6 +8,55 @@ Following is a sample Puppet manifest file (site.pp) for configuring an HTTP app
 .. Code::
 
 	node bigip1 {
+
+	f5_vlan { '/Common/internal_vlan':
+      ensure                         => 'present',
+      auto_last_hop          => 'enabled',
+      cmp_hash               => 'src-ip',
+      description            => 'This is VLAN 10',
+      fail_safe              => 'enabled',
+      fail_safe_action       => 'restart-all',
+      fail_safe_timeout      => '90',
+      mtu                    => '1500',
+      sflow_polling_interval => '3000',
+      sflow_sampling_rate    => '4000',
+      source_check           => 'enabled',
+      vlan_tag               => "$int_vlan",
+      interfaces             => [{name => '1.2', tagged => false}]
+	}
+
+	f5_vlan { '/Common/external_vlan':
+		ensure                 => 'present',
+		auto_last_hop          => 'enabled',
+		cmp_hash               => 'src-ip',
+		description            => 'This is VLAN 11',
+		fail_safe              => 'enabled',
+		fail_safe_action       => 'restart-all',
+		fail_safe_timeout      => '90',
+		mtu                    => '1500',
+		sflow_polling_interval => '3000',
+		sflow_sampling_rate    => '4000',
+		source_check           => 'enabled',
+		vlan_tag               => "$ext_vlan",
+		interfaces             => [{name => '1.1', tagged => false}]
+	}
+
+	f5_selfip { '/Common/internal_self_ip':
+		ensure                 => 'present',
+		address                => '10.1.20.111/24',
+		vlan                   => '/Common/internal_vlan',
+		traffic_group          => '/Common/traffic-group-local-only',
+		inherit_traffic_group  => 'false',
+	}
+
+	f5_selfip { '/Common/external_self_ip':
+		ensure                 => 'present',
+		address                => '10.1.10.111/24',
+		vlan                   => '/Common/external_vlan',
+		traffic_group          => '/Common/traffic-group-local-only',
+		inherit_traffic_group  => 'false',
+	}
+
 	f5_node { '/Common/web_server_1':
 	   ensure                          => 'present',
 	   address                         => '10.1.20.11',
