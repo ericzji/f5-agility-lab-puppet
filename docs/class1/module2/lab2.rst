@@ -9,16 +9,6 @@ Following is a sample Puppet manifest file (site.pp)
 
 	node bigip1 {
 
-	f5_root { '/Common/root':
-	  old_password => 'default',
-	  new_password => 'default',
-	}
-
-	f5_user { 'admin':
-	  ensure   => 'present',
-	  password => 'admin',
-	}
-
 	f5_globalsetting { '/Common/globalsetting':
 	  hostname  => "bigip-a.f5.local",
 	  gui_setup => "disabled",
