@@ -13,7 +13,7 @@ Following is a sample Puppet manifest file (site.pp) to run a TMSH command:  
 
 	}
 
-Running the puppet device -v --user=root command will have the TMSH command apply to the F5 device.
+Running the *puppet device -v --user=root* command will have the TMSH command apply to the F5 device.
 
 
 .. Code::

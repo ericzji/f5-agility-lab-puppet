@@ -2,7 +2,7 @@ Lab – Application Deployment with iApp
 ------------------------------------
 
 
-Task – Configure iApp manually on BIG-IP-1
+Task – Configure iApp manually on BIG-IP
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Configure Microsoft Lync iApp with the fully supported iApp template for Lync 2010:
@@ -19,14 +19,14 @@ Configure Microsoft Lync iApp with the fully supported iApp template for Lync 20
 
 Yes, deploy this BIG-IP system for Front End services
 
-*What IP address do you want to use for the Front End virtual server?*
+*What IP address do you want to use for the Front End virtual server?* (example: 1.1.1.1)
 
 This is the address clients use to access Lync (or a FQDN will resolve to this address). The BIG-IP system will create
 multiple virtual servers using this address on different ports for the different Front End Services.
 
 **Front End Server Pools**
 
-*Which Front End servers should be in this pool?*
+*Which Front End servers should be in this pool?* (example: 100.1.1.1)
 
 Type the IP address for each Lync Front End Server. You can optionally add a Connection Limit. Click Add to include additional
 servers. You must add at least one Front End Server here.
@@ -42,7 +42,7 @@ Task – Use FACTER_url command to GET manifest
 
 .. Code::
 
-	$ sudo FACTER_url=https://admin:admin@10.192.74.111 puppet resource f5_iapp
+	$ sudo FACTER_url=https://admin:admin@10.1.1.246 puppet resource f5_iapp
 	f5_iapp { '/Common/MicrosoftLync.app/MicrosoftLync':
 	  ensure    => 'present',
 	  tables    => {'director_ip__snatpool_members' => [], 'director_ip_server_pools__servers' => [], 'edge_external_ip__snatpool_members' => [], 'edge_external_ip_reverse_proxy__snatpool_members' => [], 'edge_external_ip_server_pools__access_servers' => [], 'edge_external_ip_server_pools__av_servers' => [], 'edge_external_ip_server_pools__conf_servers' => [], 'edge_internal_ip__snatpool_members' => [], 'edge_internal_ip_reverse_proxy__snatpool_members' => [], 'edge_internal_ip_server_pools__servers' => [], 'front_end_ip__snatpool_members' => [], 'front_end_ip_mediation_server_pools__servers' => [], 'front_end_ip_server_pools__servers' => [{'addr' => '100.1.1.1', 'connection_limit' => '0'}]},
@@ -81,7 +81,7 @@ Task – Deploy manifest on multiple BIG-IPs
 .. Code::
 
 	$ sudo puppet device -v --user=root --trace
-	Info: starting applying configuration to bigip1 at https://10.192.74.111:443
+	Info: starting applying configuration to bigip1 at https://10.1.1.246:443
 	Info: Retrieving pluginfacts
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1

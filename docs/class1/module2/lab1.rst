@@ -10,7 +10,7 @@ Following is a sample Puppet manifest file (site.pp) for configuring an HTTP app
 	node bigip1 {
 
 	f5_vlan { '/Common/internal_vlan':
-		ensure                         => 'present',
+		ensure                 => 'present',
 		auto_last_hop          => 'enabled',
 		cmp_hash               => 'src-ip',
 		description            => 'This is VLAN 10',
@@ -120,7 +120,9 @@ This example features three tasks:
 #. Next, establish the pool of servers. The “f5_pool” module creates a pool named web_pool and also adds the node members created above as the pool members. 
 #. The “f5_virtualserver” module creates a virtual server http-vs with http profile, and the web_pool created above.
 
-Before running puppet device (command for Puppet Network Device ), there are no virtual servers, pools, or nodes configured on the BIG-IP device. Running the puppet device -v --user=root command will have the device proxy node generate a certificate and apply your classifications to the F5 device.
+Note that we also have to set up the proper internal and external VLAN's and self IP's needed for the web servers.
+
+Before running puppet device (command for Puppet Network Device ), there are no virtual servers, pools, or nodes configured on the BIG-IP device. Running the *puppet device -v --user=root* command will have the device proxy node generate a certificate and apply your classifications to the F5 device.
 
 .. Code::
 
@@ -130,6 +132,10 @@ Before running puppet device (command for Puppet Network Device ), there are no 
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1
 	Info: Applying configuration version '1530309558'
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_vlan[/Common/internal_vlan]/ensure: created
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_vlan[/Common/external_vlan]/ensure: created
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_selfip[/Common/internal_self_ip]/ensure: created
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_selfip[/Common/external_self_ip]/ensure: created
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_node[/Common/web_server_1]/ensure: created
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_node[/Common/web_server_2]/ensure: created
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_node[/Common/web_server_3]/ensure: created
@@ -140,41 +146,48 @@ Before running puppet device (command for Puppet Network Device ), there are no 
 
 Task – Verify configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Puppet has now created a new, fully configured virtual server (Figure 3). This server is load balancing HTTP applications across a newly created pool (Figure 4). The pool includes three newly created web servers (Figure 5).
+Puppet has now created a new, fully configured virtual server (Figure 1). This server is load balancing HTTP applications across a newly created pool (Figure 2). The pool includes three newly created web servers (Figure 3).
+
+Figure 1:
 
 .. image:: ../../_static/module2_lab1_picture1.png
 
+Figure 2:
+
 .. image:: ../../_static/module2_lab1_picture2.png
+
+Figure 3:
 
 .. image:: ../../_static/module2_lab1_picture3.png
 
 
 Task – Delete configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Next, modify your site.pp to remove all the configuration:
 
 .. Code::
 
 	node bigip1 {
 	f5_virtualserver { '/Common/http_vs':
-	   ensure                          => 'absent',
-	   provider                        => 'standard',
-	   protocol                        => 'tcp',
+	   ensure                  => 'absent',
+	   provider                => 'standard',
+	   protocol                => 'tcp',
 	}
 
 	f5_pool { '/Common/web_pool':
-	   ensure                          => 'absent',
+	   ensure                  => 'absent',
 	}
 
 	f5_node { '/Common/web_server_1':
-	   ensure                          => 'absent',
+	   ensure                  => 'absent',
 	   }
 
 	f5_node { '/Common/web_server_2':
-	   ensure                          => 'absent',
+	   ensure                  => 'absent',
 	}
 
 	f5_node { '/Common/web_server_3':
-	   ensure                          => 'absent',
+	   ensure                  => 'absent',
 	}
 
 	f5_selfip { '/Common/internal_self_ip':
@@ -208,5 +221,9 @@ Task – Delete configuration
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_node[/Common/web_server_1]/ensure: removed
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_node[/Common/web_server_2]/ensure: removed
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_node[/Common/web_server_3]/ensure: removed
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_selfip[/Common/internal_self_ip]/ensure: removed
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_selfip[/Common/external_self_ip]/ensure: removed
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_vlan[/Common/internal_vlan]/ensure: removed
+	Notice: /Stage[main]/Main/Node[bigip1]/F5_vlan[/Common/external_vlan]/ensure: removed
 	Info: Node[bigip1]: Unscheduling all events on Node[bigip1]
 	Notice: Applied catalog in 2.93 seconds

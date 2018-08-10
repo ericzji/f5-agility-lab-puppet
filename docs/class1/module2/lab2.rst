@@ -37,9 +37,6 @@ Running the puppet will automatically onboard the new device.
 	Info: Retrieving plugin
 	Info: Caching catalog for bigip1
 	Info: Applying configuration version '1530319476'
-	Notice: /Stage[main]/Main/Node[bigip1]/F5_root[/Common/root]/old_password: defined 'old_password' as 'default'
-	Notice: /Stage[main]/Main/Node[bigip1]/F5_root[/Common/root]/new_password: defined 'new_password' as 'default'
-	Notice: /Stage[main]/Main/Node[bigip1]/F5_user[admin]/password: defined 'password' as 'admin'
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_dns[/Common/dns]/name_servers: defined 'name_servers' as '4.2.2.2 8.8.8.8'
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_dns[/Common/dns]/search: defined 'search' as 'localhost f5.local'
 	Notice: /Stage[main]/Main/Node[bigip1]/F5_ntp[/Common/ntp]/servers: defined 'servers' as '0.pool.ntp.org 1.pool.ntp.org'

@@ -11,6 +11,10 @@ In this lab, the puppet master and proxy have already been installed and provisi
 
 ssh to Puppet Master from Jumphost Terminal
 
+	.. code::
+
+		ssh scs@10.1.1.101
+
 #.  **Download F5 module**
 
 	.. NOTE:: In this lab, F5 module has already been downloaded with the latest version. You may only perform this step to get the updated version.
@@ -27,6 +31,7 @@ ssh to Puppet Master from Jumphost Terminal
 	.. NOTE:: In this lab, you may find the configuration file is already created, and you just have to verify the configuration.
 
 	Before you can use the F5 module, you must create a device.conf file in the Puppet configuration directory (/etc/puppetlabs/puppet) on the Puppet proxy:
+	
 	.. code::
 
 	   [bigip1]
@@ -37,7 +42,8 @@ ssh to Puppet Master from Jumphost Terminal
 
 #. **Classify Your Nodes on the Puppet Master**
 
-	Next, you enter the configuration in the relevant class statement or node declaration in your site.pp, <devicecertname>.pp node manifest, or some profiles::<profile_name> manifest file. Following is a sample Puppet manifest file (site.pp) for configuring an HTTP application on the BIG-IP platform::
+	Next, you enter the configuration in the relevant class statement or node declaration in your site.pp. 
+	Following is a sample Puppet manifest file (site.pp) for configuring a VLAN on the BIG-IP platform::
 
 		scs@master:/etc/puppetlabs/code/environments/production/manifests$ pwd
 		/etc/puppetlabs/code/environments/production/manifests
@@ -81,7 +87,7 @@ ssh to Puppet Master from Jumphost Terminal
 		Info: Node[bigip1]: Unscheduling all events on Node[bigip1]
 		Notice: Applied catalog in 0.57 seconds
 
-#. **puppet resource to query a F5 device**
+#. **Puppet resource to query a F5 device**
 
 	Once you've established a basic configuration, you can explore the providers and their allowed options by running puppet resource <TYPENAME> for each type. (Note: You must have your authentification credentials in FACTER_url within your command, or puppet resource will not work.) 
 
@@ -135,9 +141,17 @@ ssh to Puppet Master from Jumphost Terminal
 
 		 }
 		}
-	Re-run puppet device:
+	Re-run puppet device to delete the vlan:
 
 	.. Code::
 
 			$ sudo puppet device -v --user=root --trace
+			Info: starting applying configuration to bigip1 at https://10.1.1.246:443
+			Info: Retrieving pluginfacts
+			Info: Retrieving plugin
+			Info: Caching catalog for bigip1
+			Info: Applying configuration version '1533924613'
+			Notice: /Stage[main]/Main/Node[bigip1]/F5_vlan[/Common/test_vlan]/ensure: removed
+			Info: Node[bigip1]: Unscheduling all events on Node[bigip1]
+			Notice: Applied catalog in 0.75 seconds
 			

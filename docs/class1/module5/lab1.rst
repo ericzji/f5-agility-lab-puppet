@@ -1,9 +1,6 @@
 Lab – Puppet Workflow automation
 -----------------------------------
 
-.. TODO:: Needs lab description
-
-
 Task – Create your own module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
