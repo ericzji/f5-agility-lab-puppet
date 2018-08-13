@@ -19,6 +19,7 @@ In this lab, we are creating a new puppet module *bigip*
 	├── puppetlabs-f5 (v1.5.1)
 	└── puppetlabs-f5 (v1.3.0)
 
+	scs@master:$ cd /etc/puppetlabs/code/environments/production/modules
 	scs@master:/etc/puppetlabs/code/environments/production/modules$ sudo puppet module generate scs-bigip --skip-interview
 
 	Notice: Generating module at /etc/puppetlabs/code/environments/production/modules/bigip...

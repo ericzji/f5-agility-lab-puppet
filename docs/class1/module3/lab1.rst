@@ -13,6 +13,8 @@ Configure Microsoft Lync iApp with the fully supported iApp template for Lync 20
 4. In the Name box, type a name. In our example, we use MicrosoftLync.
 5. From the Template list, select f5.microsoft_lync_server_2010. The new Lync template opens.
 
+.. NOTE:: In step 5, click the checkbox *show deprecated templates*, and the template name showing up will be *f5.microsoft_lync_server_2010 (Deprecated)*
+
 **Configuring the iApp for Lync Front End Servers:**
 
 *Are you deploying this system for internal Front End services?*
@@ -90,4 +92,4 @@ Task – Deploy manifest on multiple BIG-IPs
 	Info: Node[bigip1]: Unscheduling all events on Node[bigip1]
 	Notice: Applied catalog in 1.05 seconds
 
-
+.. NOTE:: Please ensure that you delete the iApp's from BIG-IP to clean up the lab.
